@@ -30,6 +30,24 @@
         </div>
       </div>
 
+      <div class="card__toggles">
+        <label class="toggle" for="includeSymbols">
+          <span class="toggle__label">Include symbols</span>
+          <span class="toggle__switch">
+            <input id="includeSymbols" type="checkbox" />
+            <span class="toggle__slider"></span>
+          </span>
+        </label>
+
+        <label class="toggle" for="includeNumbers">
+          <span class="toggle__label">Include numbers</span>
+          <span class="toggle__switch">
+            <input id="includeNumbers" type="checkbox" />
+            <span class="toggle__slider"></span>
+          </span>
+        </label>
+      </div>
+
       <button id="generateBtn" class="card__button" onclick="generateRandomPassword()">Generate passwords</button>
 
       <hr class="card__divider" />

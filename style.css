@@ -91,6 +91,70 @@ body {
   font-size: 12px;
 }
 
+.card__toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #dfe5f1;
+  font-size: 14px;
+}
+
+.toggle__label {
+  color: #dfe5f1;
+}
+
+.toggle__switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 28px;
+}
+
+.toggle__switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle__slider {
+  position: absolute;
+  inset: 0;
+  background-color: #2f3b52;
+  border-radius: 999px;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.toggle__slider::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 4px;
+  top: 4px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: 0.2s ease;
+}
+
+.toggle__switch input:checked + .toggle__slider {
+  background-color: #3ddc84;
+}
+
+.toggle__switch input:checked + .toggle__slider::before {
+  transform: translateX(20px);
+  background-color: #0c1220;
+}
+
 .card__button {
   background-color: #3ddc84;
   color: #0c1220;
