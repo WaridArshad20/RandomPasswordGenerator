@@ -19,49 +19,38 @@ let numbers_and_alphabets = characters.filter(char => /^[A-Za-z0-9]$/.test(char)
 
 function generateRandomPassword(){
     let passwordLength = passwordLengthEl.value;
-    let randomNumber1 = ""
-    let randomNumber2 = ""
+    let password1 = "" 
+    let password2 = ""
 
-    for(let i=0; i<passwordLength; i++) {
+    password1 = randomPassword(password1, passwordLength)
+    password2 = randomPassword(password2, passwordLength)
+
+    password1El.textContent = password1
+    password2El.textContent = password2
+}
+
+function randomPassword(password, length) {
+    for(let i=0; i<length; i++) {
         if(includeSymbolEl.checked && includeNumbersEl.checked) {
-            randomNumber1 += characters[getRandomNumber(characters.length)]
+            password += characters[getRandomNumber(characters.length)]
 
         } else if (!includeSymbolEl.checked && !includeNumbersEl.checked) {
-            randomNumber1 += onlyAlphabets[getRandomNumber(onlyAlphabets.length)]
+            password += onlyAlphabets[getRandomNumber(onlyAlphabets.length)]
 
         } else if (includeSymbolEl.checked && !includeNumbersEl.checked) {
-            randomNumber1 += symbol_and_alphabets[getRandomNumber(symbol_and_alphabets.length)]
-            
+            password += symbol_and_alphabets[getRandomNumber(symbol_and_alphabets.length)]
+
         } else if (!includeSymbolEl.checked && includeNumbersEl.checked) {
-            randomNumber1 += numbers_and_alphabets[getRandomNumber(numbers_and_alphabets.length)]
+            password += numbers_and_alphabets[getRandomNumber(numbers_and_alphabets.length)]
         }
         
-    }  
-
-    for(let i=0; i<passwordLength; i++) {
-        if(includeSymbolEl.checked && includeNumbersEl.checked) {
-            randomNumber2 += characters[getRandomNumber(characters.length)]
-
-        } else if (!includeSymbolEl.checked && !includeNumbersEl.checked) {
-            randomNumber2 += onlyAlphabets[getRandomNumber(onlyAlphabets.length)]
-
-        } else if (includeSymbolEl.checked && !includeNumbersEl.checked) {
-            randomNumber2 += symbol_and_alphabets[getRandomNumber(symbol_and_alphabets.length)]
-
-        } else if (!includeSymbolEl.checked && includeNumbersEl.checked) {
-            randomNumber2 += numbers_and_alphabets[getRandomNumber(numbers_and_alphabets.length)]
-        }
     } 
-
-    password1El.textContent = randomNumber1
-    password2El.textContent = randomNumber2  
+    return password
 }
 
 function getRandomNumber(number) {
     return Math.floor(Math.random() * number)
 }
-
-console.log(getRandomNumber())
 
 function copyPassword(buttonElement) {
     const text = buttonElement.innerText;
