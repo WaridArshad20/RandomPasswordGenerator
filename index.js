@@ -19,33 +19,39 @@ let numbers_and_alphabets = characters.filter(char => /^[A-Za-z0-9]$/.test(char)
 
 function generateRandomPassword(){
     let passwordLength = passwordLengthEl.value;
-    let password1 = "" 
-    let password2 = ""
 
-    password1 = randomPassword(password1, passwordLength)
-    password2 = randomPassword(password2, passwordLength)
+    let password1 = randomPassword(passwordLength)
+    let password2 = randomPassword(passwordLength)
 
     password1El.textContent = password1
     password2El.textContent = password2
 }
 
-function randomPassword(password, length) {
-    for(let i=0; i<length; i++) {
-        if(includeSymbolEl.checked && includeNumbersEl.checked) {
-            password += characters[getRandomNumber(characters.length)]
+function randomPassword(length) {
+    const includeSymbols = includeSymbolEl.checked
+    const includeNumbers = includeNumbersEl.checked
+    let selectedCharacters;
+    let password = ""
+    if(includeSymbols && includeNumbers) {
+        selectedCharacters = characters 
 
-        } else if (!includeSymbolEl.checked && !includeNumbersEl.checked) {
-            password += onlyAlphabets[getRandomNumber(onlyAlphabets.length)]
+    } else if (includeSymbols) {
+        selectedCharacters = symbol_and_alphabets
 
-        } else if (includeSymbolEl.checked && !includeNumbersEl.checked) {
-            password += symbol_and_alphabets[getRandomNumber(symbol_and_alphabets.length)]
-
-        } else if (!includeSymbolEl.checked && includeNumbersEl.checked) {
-            password += numbers_and_alphabets[getRandomNumber(numbers_and_alphabets.length)]
-        }
+    } else if (includeNumbers) {
+        selectedCharacters = numbers_and_alphabets
         
+    } else {
+        selectedCharacters = onlyAlphabets
+    }
+    
+    for(let i=0; i<length; i++) {
+            password += selectedCharacters[getRandomNumber(selectedCharacters.length)]  
     } 
     return password
+
+
+    
 }
 
 function getRandomNumber(number) {
