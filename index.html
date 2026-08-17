@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random Password Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="page">
+    <div class="card">
+      <h1 class="card__title">
+        Generate a <span class="card__title--accent">random password</span>
+      </h1>
+      <p class="card__subtitle">Never use an insecure password again.</p>
+
+      <div class="card__length">
+        <label for="passwordLength" class="card__length-label">Password length</label>
+        <div class="card__length-control">
+          <input
+            id="passwordLength"
+            class="card__length-input"
+            type="number"
+            min="8"
+            max="15"
+            value="8"
+          />
+          <span class="card__length-max">Max 15</span>
+        </div>
+      </div>
+
+      <button id="generateBtn" class="card__button" onclick="generateRandomPassword()">Generate passwords</button>
+
+      <hr class="card__divider" />
+
+      <div class="card__results">
+        <button type="button" id="password1" class="password password--copy" aria-label="Copy password 1" onclick="copyPassword(this)"></button>
+        <button type="button" id="password2" class="password password--copy" aria-label="Copy password 2" onclick="copyPassword(this)"></button>
+      </div>
+    </div>
+  </main>
+
+  <div id="copyToast" class="toast" role="status" aria-live="polite">Password copied</div>
+
+  <script src="index.js"></script>
+</body>
+</html>
